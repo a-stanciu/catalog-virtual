@@ -35,8 +35,8 @@
             this.lbStudenti = new System.Windows.Forms.ListBox();
             this.btnAdaugStud = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnStergMat = new System.Windows.Forms.Button();
-            this.btnAdaugMat = new System.Windows.Forms.Button();
+            this.btnStergNot = new System.Windows.Forms.Button();
+            this.btnAdaugNot = new System.Windows.Forms.Button();
             this.tbMedia = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -110,8 +110,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnStergMat);
-            this.groupBox2.Controls.Add(this.btnAdaugMat);
+            this.groupBox2.Controls.Add(this.btnStergNot);
+            this.groupBox2.Controls.Add(this.btnAdaugNot);
             this.groupBox2.Controls.Add(this.tbMedia);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
@@ -123,25 +123,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Note";
             // 
-            // btnStergMat
+            // btnStergNot
             // 
-            this.btnStergMat.Location = new System.Drawing.Point(95, 284);
-            this.btnStergMat.Name = "btnStergMat";
-            this.btnStergMat.Size = new System.Drawing.Size(86, 23);
-            this.btnStergMat.TabIndex = 4;
-            this.btnStergMat.Text = "Ștergere";
-            this.btnStergMat.UseVisualStyleBackColor = true;
-            this.btnStergMat.Click += new System.EventHandler(this.btnStergMat_Click);
+            this.btnStergNot.Location = new System.Drawing.Point(95, 284);
+            this.btnStergNot.Name = "btnStergNot";
+            this.btnStergNot.Size = new System.Drawing.Size(86, 23);
+            this.btnStergNot.TabIndex = 4;
+            this.btnStergNot.Text = "Ștergere";
+            this.btnStergNot.UseVisualStyleBackColor = true;
+            this.btnStergNot.Click += new System.EventHandler(this.btnStergNot_Click);
             // 
-            // btnAdaugMat
+            // btnAdaugNot
             // 
-            this.btnAdaugMat.Location = new System.Drawing.Point(6, 284);
-            this.btnAdaugMat.Name = "btnAdaugMat";
-            this.btnAdaugMat.Size = new System.Drawing.Size(86, 23);
-            this.btnAdaugMat.TabIndex = 4;
-            this.btnAdaugMat.Text = "Adăugare";
-            this.btnAdaugMat.UseVisualStyleBackColor = true;
-            this.btnAdaugMat.Click += new System.EventHandler(this.btnAdaugMat_Click);
+            this.btnAdaugNot.Location = new System.Drawing.Point(6, 284);
+            this.btnAdaugNot.Name = "btnAdaugNot";
+            this.btnAdaugNot.Size = new System.Drawing.Size(86, 23);
+            this.btnAdaugNot.TabIndex = 4;
+            this.btnAdaugNot.Text = "Adăugare";
+            this.btnAdaugNot.UseVisualStyleBackColor = true;
+            this.btnAdaugNot.Click += new System.EventHandler(this.btnAdaugNot_Click);
             // 
             // tbMedia
             // 
@@ -199,6 +199,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "DetaliiMaterie";
             this.Text = "Detalii ";
             this.Load += new System.EventHandler(this.DetaliiMaterie_Load);
@@ -219,8 +221,8 @@
         private System.Windows.Forms.Button btnAdaugStud;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListView lvNote;
-        private System.Windows.Forms.Button btnStergMat;
-        private System.Windows.Forms.Button btnAdaugMat;
+        private System.Windows.Forms.Button btnStergNot;
+        private System.Windows.Forms.Button btnAdaugNot;
         private System.Windows.Forms.TextBox tbMedia;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

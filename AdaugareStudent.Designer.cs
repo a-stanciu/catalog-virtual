@@ -84,6 +84,7 @@
             this.Controls.Add(this.btnAdaugare);
             this.Controls.Add(this.tbNume);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AdaugareStudent";

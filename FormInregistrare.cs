@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,13 +27,14 @@ namespace PIUGlab2_4
             if (!Regex.Match(txtNume.Text, "^[a-zA-Z' -]*$").Success)
             {
                 errNume.SetError(txtNume, "Numele nu este introdus corect.");
+                numeOk = false;
             }
             else
             {
                 errNume.Clear();
                 numeOk = true;
-                activBtnInregistrare();
             }
+            activBtnInregistrare();
         }
 
         private void txtParola_TextChanged(object sender, EventArgs e)
@@ -40,18 +42,15 @@ namespace PIUGlab2_4
             if (!Regex.Match(txtParola.Text, "^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$").Success)
             {
                 errParola.SetError(txtParola, "Parola nu îndeplinește cerințele minime.");
+                parolaOk = false;
             }
             else
             {
                 errParola.Clear();
                 parolaOk = true;
-                activBtnInregistrare();
             }
-        }
-
-        private void btnInregistrare_Click(object sender, EventArgs e)
-        {
-            
+            activBtnInregistrare();
+            txtConfirmParola_TextChanged(sender, e);
         }
 
         private void txtConfirmParola_TextChanged(object sender, EventArgs e)
@@ -59,20 +58,32 @@ namespace PIUGlab2_4
             if (txtParola.Text != txtConfirmParola.Text)
             {
                 errConfirmParola.SetError(txtConfirmParola, "Parolele nu se potrivesc.");
+                confirmParolaOk = false;
             }
             else
             {
                 errConfirmParola.Clear();
                 confirmParolaOk = true;
-                activBtnInregistrare();
             }
+            activBtnInregistrare();
         }
 
         private void activBtnInregistrare()
         {
-            if (numeOk == true && parolaOk == true && confirmParolaOk == true)
+            btnInregistrare.Enabled = numeOk && parolaOk && confirmParolaOk;
+        }
+
+        private void btnInregistrare_Click(object sender, EventArgs e)
+        {
+            using (FileStream file = new FileStream(Application.StartupPath + "\\Data\\users",
+                                                    FileMode.Append,
+                                                    FileAccess.Write))
             {
-                btnInregistrare.Enabled = true;
+                var writer = new StreamWriter(file);
+                writer.WriteLine(txtNume.Text + ":" + txtParola.Text);
+                writer.Close();
+                MessageBox.Show("Utilizatorul a fost înregistrat.", "Succes");
+                this.Close();
             }
         }
     }

@@ -61,11 +61,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 9);
+            this.label3.Location = new System.Drawing.Point(19, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(306, 13);
+            this.label3.Size = new System.Drawing.Size(346, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Pentru a accesa aplicația, introduceți numele și parola dvs.";
+            this.label3.Text = "Pentru a accesa catalogul virtual, introduceți numele și parola dvs.";
             // 
             // label2
             // 
@@ -116,6 +116,7 @@
             this.Controls.Add(this.linkInregistrare);
             this.Controls.Add(this.btnAutentificare);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormAutentificare";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

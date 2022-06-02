@@ -49,6 +49,8 @@ namespace PIUGlab2_4
             this.adăugareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ștergereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ărileEfectuateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.căutareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obținețiAjutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.despreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,18 +146,21 @@ namespace PIUGlab2_4
             this.salvareToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.salvareToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.salvareToolStripMenuItem.Text = "&Salvare";
+            this.salvareToolStripMenuItem.Click += new System.EventHandler(this.salvareToolStripMenuItem_Click);
             // 
             // importareToolStripMenuItem
             // 
             this.importareToolStripMenuItem.Name = "importareToolStripMenuItem";
             this.importareToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.importareToolStripMenuItem.Text = "I&mportare...";
+            this.importareToolStripMenuItem.Click += new System.EventHandler(this.importareToolStripMenuItem_Click);
             // 
             // exportareToolStripMenuItem
             // 
             this.exportareToolStripMenuItem.Name = "exportareToolStripMenuItem";
             this.exportareToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exportareToolStripMenuItem.Text = "E&xportare...";
+            this.exportareToolStripMenuItem.Click += new System.EventHandler(this.exportareToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -175,7 +180,9 @@ namespace PIUGlab2_4
             this.editareToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adăugareToolStripMenuItem,
             this.ștergereToolStripMenuItem,
-            this.ărileEfectuateToolStripMenuItem});
+            this.ărileEfectuateToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.căutareToolStripMenuItem});
             this.editareToolStripMenuItem.Name = "editareToolStripMenuItem";
             this.editareToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.editareToolStripMenuItem.Text = "&Editare";
@@ -201,6 +208,19 @@ namespace PIUGlab2_4
             this.ărileEfectuateToolStripMenuItem.Name = "ărileEfectuateToolStripMenuItem";
             this.ărileEfectuateToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.ărileEfectuateToolStripMenuItem.Text = "Anulați modificările efectuate";
+            this.ărileEfectuateToolStripMenuItem.Click += new System.EventHandler(this.ărileEfectuateToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(227, 6);
+            // 
+            // căutareToolStripMenuItem
+            // 
+            this.căutareToolStripMenuItem.Name = "căutareToolStripMenuItem";
+            this.căutareToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.căutareToolStripMenuItem.Text = "&Căutare";
+            this.căutareToolStripMenuItem.Click += new System.EventHandler(this.căutareToolStripMenuItem_Click);
             // 
             // ajutorToolStripMenuItem
             // 
@@ -215,15 +235,16 @@ namespace PIUGlab2_4
             // 
             this.obținețiAjutorToolStripMenuItem.Name = "obținețiAjutorToolStripMenuItem";
             this.obținețiAjutorToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.obținețiAjutorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.obținețiAjutorToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.obținețiAjutorToolStripMenuItem.Text = "&Obțineți ajutor";
             this.obținețiAjutorToolStripMenuItem.Click += new System.EventHandler(this.obținețiAjutorToolStripMenuItem_Click);
             // 
             // despreToolStripMenuItem
             // 
             this.despreToolStripMenuItem.Name = "despreToolStripMenuItem";
-            this.despreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.despreToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.despreToolStripMenuItem.Text = "&Despre...";
+            this.despreToolStripMenuItem.Click += new System.EventHandler(this.despreToolStripMenuItem_Click);
             // 
             // MainApp
             // 
@@ -235,7 +256,9 @@ namespace PIUGlab2_4
             this.Controls.Add(this.lvMaterii);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "MainApp";
             this.Text = "Gestionare materii";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -269,5 +292,7 @@ namespace PIUGlab2_4
         private ToolStripMenuItem toolStripMenuItemAdaugare;
         private ToolStripMenuItem toolStripMenuItemStergere;
         private ToolStripMenuItem ărileEfectuateToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem căutareToolStripMenuItem;
     }
 }

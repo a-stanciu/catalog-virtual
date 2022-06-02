@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,12 @@
     <Compile Include="AdaugareStudent.Designer.cs">
       <DependentUpon>AdaugareStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="CautareMaterie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CautareMaterie.Designer.cs">
+      <DependentUpon>CautareMaterie.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfirmareIesire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +82,12 @@
     </Compile>
     <Compile Include="ConfirmareStergere.Designer.cs">
       <DependentUpon>ConfirmareStergere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Despre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Despre.Designer.cs">
+      <DependentUpon>Despre.cs</DependentUpon>
     </Compile>
     <Compile Include="DetaliiMaterie.cs">
       <SubType>Form</SubType>
@@ -114,11 +127,17 @@
     <EmbeddedResource Include="AdaugareStudent.resx">
       <DependentUpon>AdaugareStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CautareMaterie.resx">
+      <DependentUpon>CautareMaterie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfirmareIesire.resx">
       <DependentUpon>ConfirmareIesire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmareStergere.resx">
       <DependentUpon>ConfirmareStergere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Despre.resx">
+      <DependentUpon>Despre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetaliiMaterie.resx">
       <DependentUpon>DetaliiMaterie.cs</DependentUpon>
@@ -142,6 +161,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\Materie.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

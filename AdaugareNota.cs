@@ -22,6 +22,7 @@ namespace PIUGlab2_4
         private void btnAdaugare_Click(object sender, EventArgs e)
         {
             this.Nota = Decimal.ToInt32(numNota.Value);
+            this.Data = dtpData.Value;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

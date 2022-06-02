@@ -108,6 +108,8 @@
             // dtpData
             // 
             this.dtpData.Location = new System.Drawing.Point(54, 38);
+            this.dtpData.MaxDate = new System.DateTime(2029, 12, 31, 0, 0, 0, 0);
+            this.dtpData.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpData.Name = "dtpData";
             this.dtpData.Size = new System.Drawing.Size(200, 22);
             this.dtpData.TabIndex = 6;
@@ -126,6 +128,9 @@
             this.Controls.Add(this.numNota);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AdaugareNota";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Adăugare notă";

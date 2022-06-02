@@ -29,6 +29,8 @@ namespace PIUGlab2_4
         {
             lbStudenti.Items.Clear();
 
+            mat.StudentiInscrisi.Sort((a, b) => a.Nume.CompareTo(b.Nume));
+
             foreach (var i in mat.StudentiInscrisi)
             {
                 lbStudenti.Items.Add(i.Nume);
@@ -46,12 +48,15 @@ namespace PIUGlab2_4
                 {
                     foreach (var n in i.Note)
                     {
-                        lvNote.Items.Add(n.Nota.ToString());
-                        lvNote.Items[lvNote.Items.Count - 1].SubItems.Add(n.Data.ToString());
+                        lvNote.Items.Add(n.Data);
+                        lvNote.Items[lvNote.Items.Count - 1].SubItems.Add(n.Nota.ToString());
                     }
                     break;
                 }
             }
+
+            var media = mat.calculMedie(lbStudenti.Text);
+            tbMedia.Text = (media == -1) ? String.Empty : media.ToString();
         }
 
         private void btnAdaugStud_Click(object sender, EventArgs e)
@@ -75,25 +80,17 @@ namespace PIUGlab2_4
                 return;
             }
 
-            foreach (var i in mat.StudentiInscrisi)
-            {
-                if (i.Nume == lbStudenti.Text)
-                {
-                    using (var f = new ConfirmareStergere(i.Nume, "student"))
-                    {
-                        if (f.ShowDialog() == DialogResult.OK)
-                        {
-                            mat.stergereStudent(i);
-                            break;
-                        }
-                    }
-                }
-            }
+            mat.stergereStudent(lbStudenti.Text);
 
             reimprospatareStudenti();
         }
 
-        private void btnAdaugMat_Click(object sender, EventArgs e)
+        private void lbStudenti_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            reimprospatareNote();
+        }
+
+        private void btnAdaugNot_Click(object sender, EventArgs e)
         {
             if (lbStudenti.SelectedItems.Count == 0)
             {
@@ -106,22 +103,23 @@ namespace PIUGlab2_4
                 var result = f.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    mat.adaugareNota(lbStudenti.Text, f.Nota, f.Data);
+                    mat.adaugareNota(lbStudenti.Text, f.Nota, f.Data.ToShortDateString());
 
                     reimprospatareNote();
                 }
             }
         }
 
-        private void btnStergMat_Click(object sender, EventArgs e)
+        private void btnStergNot_Click(object sender, EventArgs e)
         {
-            //mat.stergereNota(lbStudenti.Text, new DateTime(lvNote.SelectedItems[0].Text));
+            if (lvNote.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selectați nota pe care doriți să o ștergeți.", "Eroare");
+                return;
+            }
 
-            reimprospatareNote();
-        }
+            mat.stergereNota(lbStudenti.Text, lvNote.SelectedItems[0].Text);
 
-        private void lbStudenti_SelectedIndexChanged(object sender, EventArgs e)
-        {
             reimprospatareNote();
         }
     }

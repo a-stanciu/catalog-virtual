@@ -71,6 +71,7 @@ namespace PIUGlab2_4
                         }
                     }
                     materii.Add(new Materie(f.Nume));
+                    materii.Sort((a, b) => a.Nume.CompareTo(b.Nume));
                     reimprospatareLista();
                 }
             }
@@ -159,21 +160,6 @@ namespace PIUGlab2_4
             stergereMaterie();
         }
 
-        private void citireToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            citireFisier(fisierPrincipal);
-        }
-
-        private void scriereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            scriereFisier(fisierPrincipal);
-        }
-
-        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reimprospatareLista();
-        }
-
         private void ieșireToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -212,7 +198,79 @@ namespace PIUGlab2_4
 
         private void obținețiAjutorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                System.Diagnostics.Process.Start(Application.StartupPath + "\\Data\\PIUGHelp.html");
+            }
+            catch(Win32Exception)
+            {
+                MessageBox.Show("Fișierul \"PIUGHelp.html\" nu a fost găsit în directorul \"Data\". " +
+                    "Verificați dacă acesta a fost redenumit sau reinstalați programul.", "Eroare",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void salvareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            scriereFisier(fisierPrincipal);
+            MessageBox.Show("Datele au fost salvate.", "Succes");
+        }
+
+        private void ărileEfectuateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            citireFisier(fisierPrincipal);
+        }
+
+        private void importareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Fișiere bin (*.bin)|*.bin|Toate fișierele (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    citireFisier(filePath);
+                }
+            }
+        }
+
+        private void exportareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.InitialDirectory = "c:\\";
+                saveFileDialog.Filter = "Fișiere bin (*.bin)|*.bin|Toate fișierele (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = saveFileDialog.FileName;
+
+                    scriereFisier(filePath);
+                }
+            }
+        }
+
+        private void despreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Despre f = new Despre();
+            f.ShowDialog();
+        }
+
+        private void căutareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CautareMaterie f = new CautareMaterie(materii);
+            f.ShowDialog();
         }
     }
 }

@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PIUGlab2_4
 {
     [Serializable]
-    public struct Notare
+    public class Notare
     {
         int nota;
-        DateTime data;
+        String data;
 
-        public Notare(int nota, DateTime data) : this()
+        public Notare(int nota, String data)
         {
             this.nota = nota;
             this.data = data;
         }
 
-        public int Nota { get; }
-        public DateTime Data { get; }
+        public int Nota { get { return nota; } }
+        public String Data { get { return data; } }
     }
 
     [Serializable]
@@ -33,31 +34,58 @@ namespace PIUGlab2_4
             this.nume = nume;
         }
 
-        public int adaugareNota(int nota, DateTime data)
+        public void adaugareNota(int nota, String data)
         {
-            if (nota < 1)
+
+            foreach (var i in note)
             {
-                return -1;
+                if (i.Data == data)
+                {
+                    MessageBox.Show("O notă există deja pentru data selectată.", "Eroare");
+                    return;
+                }
             }
-            else if (nota > 100)
-            {
-                return 1;
-            }
-            else
-            {
-                note.Add(new Notare(nota, data));
-                return 0;
-            }      
+
+            note.Add(new Notare(nota, data));
+            // Compara folosind expresie lambda
+            note.Sort((a, b) => DateTime.Compare(DateTime.Parse(a.Data), DateTime.Parse(b.Data)));
         }
 
-        public void stergereNota(DateTime data)
+        public void stergereNota(String data)
         {
             foreach (var n in note)
             {
                 if (n.Data == data)
                 {
-                    note.Remove(n);
+                    using (var f = new ConfirmareStergere(n.Data + "; " + n.Nota.ToString(), "notă"))
+                    {
+                        if (f.ShowDialog() == DialogResult.OK)
+                        {
+                            note.Remove(n);
+                            break;
+                        }
+                    }
                 }
+            }
+        }
+
+        public int calculMedie()
+        {
+            int count = 0, suma = 0;
+
+            foreach (var i in note)
+            {
+                suma += i.Nota;
+                count++;
+            }
+
+            if (count == 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return suma / count;
             }
         }
 

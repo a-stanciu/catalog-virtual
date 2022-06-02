@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,27 @@ namespace PIUGlab2_4
             InitializeComponent();
         }
 
-        private void FormAutentificare_Load(object sender, EventArgs e)
+        private void reimprospatareUtilizatori()
         {
-            XmlReader reader = XmlReader.Create(Application.StartupPath + "\\users.xml");
-            while (reader.Read())
+            String filePath = Application.StartupPath + "\\Data\\users";
+
+            cbNume.Items.Clear();
+            u.Clear();
+
+            if (File.Exists(filePath))
             {
-                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "user"))
+                using (StreamReader file = new StreamReader(filePath))
                 {
-                    if (reader.HasAttributes)
+                    while (file.Peek() >= 0)
                     {
-                        u.Add(new Users(reader.GetAttribute("name"), reader.GetAttribute("password")));
+                        String line = file.ReadLine();
+                        String[] entries = line.Split(':');
+                        u.Add(new Users(entries[0], entries[1]));
                     }
                 }
             }
+
+            u.Sort((a, b) => a.Name.CompareTo(b.Name));
 
             foreach (var i in u)
             {
@@ -40,10 +49,26 @@ namespace PIUGlab2_4
             }
         }
 
+        private void FormAutentificare_Load(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(Application.StartupPath + "\\Data"))
+            {
+                MessageBox.Show("Directorul \"Data\" nu a fost găsit. Acesta conține fișiere necesare rulării " +
+                    "aplicației și trebuie să se afle în același director cu fișierul executabil. Verificați " +
+                    "dacă a fost redenumit sau reinstalați aplicația.", "Eroare",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Application.Exit();
+            }
+
+            reimprospatareUtilizatori();
+        }
+
         private void linkInregistrare_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FormInregistrare f = new FormInregistrare();
             f.ShowDialog();
+            reimprospatareUtilizatori();
         }
 
         private void btnAutentificare_Click(object sender, EventArgs e)
@@ -64,6 +89,5 @@ namespace PIUGlab2_4
             MessageBox.Show("Numele de utilizator sau parola nu sunt corecte.", "Eroare");
             tbParola.Clear();
         }
-
     }
 }
